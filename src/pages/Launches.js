@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import Card from '../components/Card';
 
@@ -20,14 +21,26 @@ class LaunchesPage extends Component {
   }
 
   renderLaunches = () => {
-    return this.state.launches.map(launch => (
-      <Card
-        key={launch.flight_number}
-        header={`${launch.flight_number}. ${launch.mission_name}`}
-      >
-        <span className="details">{formatSentences(launch.details)}</span>
-      </Card>
-    ));
+    return this.state.launches.map(
+      ({
+        flight_number,
+        mission_name,
+        launch_date_local,
+        details,
+        launch_site: { site_name_long }
+      }) => (
+        <Card
+          key={flight_number}
+          header={`${flight_number}. ${mission_name} - ${moment(
+            launch_date_local
+          ).format('Do MMM YYYY h:mma')}`}
+        >
+          <span>Launched from {site_name_long}</span>
+          <br />
+          <span className="details">{formatSentences(details)}</span>
+        </Card>
+      )
+    );
   };
 
   render() {
@@ -35,7 +48,11 @@ class LaunchesPage extends Component {
       <div className="launches">
         <h1 className="is-centred">Launches</h1>
 
-        {this.state.launches ? this.renderLaunches() : <h2>Loading...</h2>}
+        {this.state.launches ? (
+          this.renderLaunches()
+        ) : (
+          <h2 className="is-centred">Loading...</h2>
+        )}
       </div>
     );
   }
