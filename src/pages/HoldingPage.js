@@ -1,9 +1,13 @@
 import React from 'react';
 
-function HoldingPage() {
+function HoldingPage({ location }) {
+  const { pathname } = location;
+
+  const pagename = pathname[1].toUpperCase() + pathname.slice(2);
+
   return (
-    <div>
-      <h1>Under construction</h1>
+    <div className="holding">
+      <h1 className="is-centred">{pagename} - under construction</h1>
       <p>
         This page has not been implemented yet. Send{' '}
         <a href="mailto:juliannicholls29@gmail.com&subject=Get%20on%20with%20SpaceX">
