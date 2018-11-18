@@ -23,22 +23,22 @@ class LaunchesPage extends Component {
   renderLaunches = () => {
     return this.state.launches.map(
       ({
-        flight_number,
         launch_success,
+        flight_number,
         mission_name,
         launch_date_local,
+        rocket: { rocket_name },
         details,
         launch_site: { site_name_long }
       }) => (
         <Card
           key={flight_number}
-          header={`${flight_number}. ${mission_name} - ${moment(
-            launch_date_local
-          ).format('Do MMM YYYY h:mma')}`}
+          header={`${flight_number}. ${mission_name} - `}
+          subheader={`${moment(launch_date_local).format('Do MMM YYYY h:mma')}`}
           headerClass={launch_success ? 'success' : 'failure'}
         >
           <p>
-            Launched from {site_name_long}
+            {rocket_name} rocket launched from {site_name_long}
             <br />
           </p>
           <p className="details">{formatSentences(details)}</p>
