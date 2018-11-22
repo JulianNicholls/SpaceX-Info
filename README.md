@@ -3,7 +3,7 @@
 Display the information available from the SpaceX [public API] (https://api.spacexdata.com/v3). 
 Information about the API is [here](https://documenter.getpostman.com/view/2025350/RWaEzAiG#d65a7f85-e0c7-41ce-b41d-9ad20a238d90).
 
-The app can be seen [here](spacex.reallybigshoe.co.uk)
+The app can be seen [here](http://spacex.reallybigshoe.co.uk)
 
 ## Git client
 
