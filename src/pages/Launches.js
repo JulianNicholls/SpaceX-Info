@@ -4,9 +4,18 @@ import moment from 'moment';
 import Card from '../components/Card';
 
 import { loadLaunches } from '../api';
+import { formatSentences } from '../utils';
 
-function formatSentences(text) {
-  return text ? text.replace(/\.\s+/g, '.\n\n') : '';
+// I assumed that at least 1 early mission would have no payload, but no
+function renderPayloads(payloads) {
+  const count = payloads.length;
+  let num = `${count} ${count === 1 ? 'payload' : 'payloads'}`;
+
+  const list = payloads
+    .map(({ payload_type, payload_id }) => `${payload_type} ${payload_id}`)
+    .join(', ');
+
+  return `${num}: ${list}`;
 }
 
 class LaunchesPage extends Component {
@@ -19,20 +28,6 @@ class LaunchesPage extends Component {
 
     this.setState({ launches });
   }
-
-  // I assumed that at least 1 early mission would have no payload, but no
-  renderPayloads = payloads => {
-    const count = payloads.length;
-    let num = `${count} ${count === 1 ? 'payload' : 'payloads'}`;
-
-    if (count > 1) num += 's';
-
-    const list = payloads
-      .map(({ payload_type, payload_id }) => `${payload_type} ${payload_id}`)
-      .join(', ');
-
-    return `${num}: ${list}`;
-  };
 
   renderLaunches = () => {
     return this.state.launches.map(
@@ -56,7 +51,7 @@ class LaunchesPage extends Component {
         >
           <p>
             {rocket_name} rocket launched from {site_name_long} with{' '}
-            {this.renderPayloads(payloads)}
+            {renderPayloads(payloads)}
             <br />
           </p>
           <p className="details">{formatSentences(details)}</p>

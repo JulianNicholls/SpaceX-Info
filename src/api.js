@@ -5,3 +5,9 @@ export async function loadLaunches() {
 
   return await response.json();
 }
+
+export async function loadRockets() {
+  const response = await fetch(`${API_BASE_URL}rockets`);
+
+  return await response.json();
+}
