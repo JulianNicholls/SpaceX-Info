@@ -20,6 +20,20 @@ class LaunchesPage extends Component {
     this.setState({ launches });
   }
 
+  // I assumed that at least 1 early mission would have no payload, but no
+  renderPayloads = payloads => {
+    const count = payloads.length;
+    let num = `${count} ${count === 1 ? 'payload' : 'payloads'}`;
+
+    if (count > 1) num += 's';
+
+    const list = payloads
+      .map(({ payload_type, payload_id }) => `${payload_type} ${payload_id}`)
+      .join(', ');
+
+    return `${num}: ${list}`;
+  };
+
   renderLaunches = () => {
     return this.state.launches.map(
       ({
@@ -29,7 +43,10 @@ class LaunchesPage extends Component {
         launch_date_local,
         rocket: { rocket_name },
         details,
-        launch_site: { site_name_long }
+        launch_site: { site_name_long },
+        rocket: {
+          second_stage: { payloads }
+        }
       }) => (
         <Card
           key={flight_number}
@@ -38,7 +55,8 @@ class LaunchesPage extends Component {
           headerClass={launch_success ? 'success' : 'failure'}
         >
           <p>
-            {rocket_name} rocket launched from {site_name_long}
+            {rocket_name} rocket launched from {site_name_long} with{' '}
+            {this.renderPayloads(payloads)}
             <br />
           </p>
           <p className="details">{formatSentences(details)}</p>
