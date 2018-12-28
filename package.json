@@ -1,6 +1,6 @@
 {
   "name": "spacex",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "moment": "^2.22.2",
@@ -20,12 +20,20 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
       "jsx-a11y/href-no-hash": "off"
     }
-
   },
   "browserslist": [
     ">0.2%",
