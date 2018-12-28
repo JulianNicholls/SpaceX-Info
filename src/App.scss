@@ -4,8 +4,10 @@ $off-white: #eee;
 
 $aside: #243aa8;
 $card-header: #1b2b7e;
-$success: #1fd11f;
-$failure: #f1a2a2;
+$success_bg: #005700;
+$success: #99ff99;
+$failure_bg: #990000;
+$failure: #ffe0e0;
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -97,10 +99,12 @@ aside {
   }
 
   .success {
+    background: $success_bg;
     color: $success;
   }
-
+  
   .failure {
+    background: $failure_bg;
     color: $failure;
   }
 }
@@ -110,5 +114,10 @@ aside {
 
   p {
     font-size: 1.2rem;
+  }
+
+  img {
+    width: 70vw;
+    margin: 0 auto;
   }
 }

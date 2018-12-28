@@ -41,22 +41,31 @@ class LaunchesPage extends Component {
         launch_site: { site_name_long },
         rocket: {
           second_stage: { payloads }
-        }
-      }) => (
-        <Card
-          key={flight_number}
-          header={`${flight_number}. ${mission_name} - `}
-          subheader={`${moment(launch_date_local).format('Do MMM YYYY h:mma')}`}
-          headerClass={launch_success ? 'success' : 'failure'}
-        >
-          <p>
-            {rocket_name} rocket launched from {site_name_long} with{' '}
-            {renderPayloads(payloads)}
-            <br />
-          </p>
-          <p className="details">{formatSentences(details)}</p>
-        </Card>
-      )
+        },
+        upcoming
+      }) => {
+        const headerClass = upcoming
+          ? 'upcoming'
+          : launch_success
+          ? 'success'
+          : 'failure';
+        const launch_verb = upcoming ? 'launching' : 'launched';
+        const payloads_text = renderPayloads(payloads);
+
+        return (
+          <Card
+            key={flight_number}
+            header={`${flight_number}. ${mission_name} - `}
+            subheader={`${moment(launch_date_local).format('Do MMM YYYY h:mma')}`}
+            headerClass={headerClass}
+          >
+            <p>
+              {`${rocket_name} ${launch_verb} from ${site_name_long} with ${payloads_text}`}
+            </p>
+            <p className="details">{formatSentences(details)}</p>
+          </Card>
+        );
+      }
     );
   };
 
