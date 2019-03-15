@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Card from '../components/Card';
 
 import { loadRockets } from '../api';
 import { formatSentences } from '../utils';
 
-class RocketsPage extends React.Component {
-  state = {
-    rockets: null
-  };
+const RocketsPage = () => {
+  const [rockets, setRockets] = useState(null);
 
-  async componentDidMount() {
+  useEffect(() => {
+    initialLoad();
+  }, []);
+
+  const initialLoad = async () => {
     const rockets = await loadRockets();
 
-    this.setState({ rockets });
-  }
+    setRockets(rockets);
+  };
 
-  renderRockets = () => {
-    return this.state.rockets.map(({ id, rocket_name, description }) => {
+  const renderRockets = () => {
+    return rockets.map(({ id, rocket_name, description }) => {
       return (
         <Card key={id} header={rocket_name}>
           <p className="details">{formatSentences(description)}</p>
@@ -26,22 +28,12 @@ class RocketsPage extends React.Component {
     });
   };
 
-  render() {
-    const { rockets } = this.state;
-
-    console.log({ rockets });
-
-    return (
-      <div className="rockets">
-        <h1 className="is-centred">Rockets</h1>
-        {rockets ? (
-          this.renderRockets()
-        ) : (
-          <h2 className="is-centred">Loading...</h2>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="rockets">
+      <h1 className="is-centred">Rockets</h1>
+      {rockets ? renderRockets() : <h2 className="is-centred">Loading...</h2>}
+    </div>
+  );
+};
 
 export default RocketsPage;

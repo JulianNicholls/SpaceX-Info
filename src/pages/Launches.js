@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 
 import Card from '../components/Card';
@@ -18,19 +18,21 @@ function renderPayloads(payloads) {
   return `${num}: ${list}`;
 }
 
-class LaunchesPage extends Component {
-  state = {
-    launches: null
-  };
+const LaunchesPage = () => {
+  const [launches, setLaunches] = useState(null);
 
-  async componentDidMount() {
+  const initialLoad = async () => {
     const launches = await loadLaunches();
 
-    this.setState({ launches });
-  }
+    setLaunches(launches);
+  };
 
-  renderLaunches = () => {
-    return this.state.launches.map(
+  useEffect(() => {
+    initialLoad();
+  }, []);
+
+  const renderLaunches = () => {
+    return launches.map(
       ({
         launch_success,
         flight_number,
@@ -40,9 +42,9 @@ class LaunchesPage extends Component {
         details,
         launch_site: { site_name_long },
         rocket: {
-          second_stage: { payloads }
+          second_stage: { payloads },
         },
-        upcoming
+        upcoming,
       }) => {
         const headerClass = upcoming
           ? 'upcoming'
@@ -69,19 +71,13 @@ class LaunchesPage extends Component {
     );
   };
 
-  render() {
-    return (
-      <div className="launches">
-        <h1 className="is-centred">Launches</h1>
+  return (
+    <div className="launches">
+      <h1 className="is-centred">Launches</h1>
 
-        {this.state.launches ? (
-          this.renderLaunches()
-        ) : (
-          <h2 className="is-centred">Loading...</h2>
-        )}
-      </div>
-    );
-  }
-}
+      {launches ? renderLaunches() : <h2 className="is-centred">Loading...</h2>}
+    </div>
+  );
+};
 
 export default LaunchesPage;

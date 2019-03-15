@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import LaunchesPage from './pages/Launches';
+import MissionsPage from './pages/Missions';
 import RocketsPage from './pages/Rockets';
 import HoldingPage from './pages/HoldingPage';
 
@@ -28,7 +29,7 @@ class App extends Component {
               <Route path="/info" component={HoldingPage} />
               <Route path="/launchpads" component={HoldingPage} />
               <Route path="/landingpads" component={HoldingPage} />
-              <Route path="/missions" component={HoldingPage} />
+              <Route path="/missions" component={MissionsPage} />
               <Route path="/payloads" component={HoldingPage} />
               <Route path="/rockets" component={RocketsPage} />
               <Route path="/roadster" component={HoldingPage} />
