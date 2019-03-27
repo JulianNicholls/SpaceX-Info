@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import LaunchesPage from './pages/Launches';
+import CapsulesPage from './pages/Capsules';
 import MissionsPage from './pages/Missions';
 import RocketsPage from './pages/Rockets';
 import HoldingPage from './pages/HoldingPage';
@@ -22,7 +23,7 @@ class App extends Component {
             <Sidebar />
             <Switch>
               <Route path="/" exact component={LaunchesPage} />
-              <Route path="/capsules" component={HoldingPage} />
+              <Route path="/capsules" component={CapsulesPage} />
               <Route path="/cores" component={HoldingPage} />
               <Route path="/dragons" component={HoldingPage} />
               <Route path="/history" component={HoldingPage} />
