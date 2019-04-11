@@ -1,14 +1,15 @@
 {
   "name": "spacex",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "dependencies": {
+    "json-format-highlight": "^1.0.1",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-router-dom": "^4.3.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8"
   },
   "scripts": {
@@ -20,9 +21,18 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
       "jsx-a11y/href-no-hash": "off"
     }
   },
