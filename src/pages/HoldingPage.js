@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import highlightJSON from 'json-format-highlight';
 
-function HoldingPage({ location }) {
+import { loadSection } from '../api';
+import Loading from '../components/Loading';
+
+function HoldingPage({ location, pagename }) {
+  const [data, setData] = useState(null);
+
   const { pathname } = location;
 
-  const pagename = pathname[1].toUpperCase() + pathname.slice(2);
+  const dataname = pathname.slice(1);
+  pagename = pagename || dataname[0].toUpperCase() + dataname.slice(1);
+
+  useEffect(() => {
+    loadData();
+  }, [dataname]);
+
+  const loadData = async () => {
+    const responseData = await loadSection(dataname);
+
+    setData(responseData);
+  };
 
   return (
     <div className="holding">
@@ -16,8 +34,22 @@ function HoldingPage({ location }) {
         an email and tell him to get on with it 😆.
       </p>
       <img src="/images/construction.png" alt="Under Construction" />
+
+      <section className="raw-data">
+        <h2 className="is-centred">Raw Data</h2>
+        {data ? (
+          <pre dangerouslySetInnerHTML={{ __html: highlightJSON(data) }} />
+        ) : (
+          <Loading />
+        )}
+      </section>
     </div>
   );
 }
+
+HoldingPage.propTypes = {
+  location: PropTypes.object.isRequired,
+  pagename: PropTypes.string,
+};
 
 export default HoldingPage;
