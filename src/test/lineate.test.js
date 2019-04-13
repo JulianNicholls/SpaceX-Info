@@ -1,4 +1,39 @@
-import { lineate } from '../pages/HoldingPage';
+function wrapped(data) {
+  return Object.keys(data).reduce((updated, key) => {
+    const value = data[key];
+
+    if (typeof value == 'string') updated[key] = lineate(value, 70);
+    else if (typeof value === 'object') updated[key] = wrapped(value);
+    else updated[key] = value;
+
+    return updated;
+  }, {});
+}
+
+export function lineate(text, maxLine = 75) {
+  const strLen = text.length;
+
+  let retText = '';
+  let start = 0;
+
+  while (start + maxLine < strLen) {
+    let len = maxLine;
+
+    while (text[start + len] !== ' ' && len) {
+      // console.log({ len, char: text[start + len] });
+      --len;
+    }
+
+    if (len === 0)
+      return console.error('Oops', { start, text: text.substring(start) });
+
+    retText += text.substring(start, start + len) + '\n';
+    start += len + 1;
+    // console.log({ retText, start });
+  }
+
+  return retText + text.substring(start, start + maxLine);
+}
 
 const shortString = 'This is a shorter string';
 const longString =
