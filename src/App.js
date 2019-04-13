@@ -28,8 +28,18 @@ class App extends Component {
               <Route path="/dragons" component={HoldingPage} />
               <Route path="/history" component={HoldingPage} />
               <Route path="/info" component={HoldingPage} />
-              <Route path="/launchpads" component={HoldingPage} />
-              <Route path="/landingpads" component={HoldingPage} />
+              <Route
+                path="/launchpads"
+                render={props => (
+                  <HoldingPage {...props} pagename={'Launch Pads'} />
+                )}
+              />
+              <Route
+                path="/landpads"
+                render={props => (
+                  <HoldingPage {...props} pagename={'Landing Pads'} />
+                )}
+              />
               <Route path="/missions" component={MissionsPage} />
               <Route path="/payloads" component={HoldingPage} />
               <Route path="/rockets" component={RocketsPage} />

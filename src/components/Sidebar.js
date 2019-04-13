@@ -11,7 +11,7 @@ function Sidebar(props) {
       <NavLink to="/history">History</NavLink>
       <NavLink to="/info">Info</NavLink>
       <NavLink to="/launchpads">Launch Pads</NavLink>
-      <NavLink to="/landingpads">Landing Pads</NavLink>
+      <NavLink to="/landpads">Landing Pads</NavLink>
       <NavLink to="/" exact>
         Launches
       </NavLink>
