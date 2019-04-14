@@ -132,7 +132,7 @@ aside {
 
 section.raw-data {
   border: 1px solid darken($off-white, 20);
-  overflow: scroll;
+  overflow-x: scroll;
   padding: 0.5rem;
   width: 80vw;
   
