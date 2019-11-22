@@ -14,14 +14,14 @@ function HoldingPage({ location, pagename }) {
   pagename = pagename || dataname[0].toUpperCase() + dataname.slice(1);
 
   useEffect(() => {
+    const loadData = async () => {
+      const responseData = await loadSection(dataname);
+
+      setData(responseData);
+    };
+
     loadData();
   }, [dataname]);
-
-  const loadData = async () => {
-    const responseData = await loadSection(dataname);
-
-    setData(responseData);
-  };
 
   return (
     <div className="holding">

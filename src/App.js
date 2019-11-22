@@ -24,6 +24,8 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={LaunchesPage} />
               <Route path="/capsules" component={CapsulesPage} />
+              <Route path="/missions" component={MissionsPage} />
+              <Route path="/rockets" component={RocketsPage} />
               <Route path="/cores" component={HoldingPage} />
               <Route path="/dragons" component={HoldingPage} />
               <Route path="/history" component={HoldingPage} />
@@ -40,9 +42,7 @@ class App extends Component {
                   <HoldingPage {...props} pagename={'Landing Pads'} />
                 )}
               />
-              <Route path="/missions" component={MissionsPage} />
               <Route path="/payloads" component={HoldingPage} />
-              <Route path="/rockets" component={RocketsPage} />
               <Route path="/roadster" component={HoldingPage} />
               <Route path="/ships" component={HoldingPage} />
             </Switch>
