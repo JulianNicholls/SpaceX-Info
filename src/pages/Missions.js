@@ -38,9 +38,17 @@ const MissionsPage = () => {
             <p>Manufacturers: {manufacturers.join(', ')}</p>
             <p>Payloads: {payload_ids.join(', ')}</p>
             <p className="details">{formatSentences(description)}</p>
-            {wikipedia && <a href={wikipedia}>More Information</a>}
+            {wikipedia && (
+              <a href={wikipedia} target="_blank" rel="noopener noreferrer">
+                More Information
+              </a>
+            )}
             <br />
-            {website && <a href={website}>{mission_name}</a>}
+            {website && (
+              <a href={website} target="_blank" rel="noopener noreferrer">
+                {mission_name}
+              </a>
+            )}
           </Card>
         );
       }
