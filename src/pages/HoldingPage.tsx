@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import highlightJSON from 'json-format-highlight';
 
 import { loadSection } from '../api';
 import Loading from '../components/Loading';
 
-function HoldingPage({ location, pagename }) {
+interface HoldingPageProps {
+  location: { pathname: string };
+  pagename: string;
+}
+
+function HoldingPage({ location, pagename }: HoldingPageProps): JSX.Element {
   const [data, setData] = useState(null);
 
   const { pathname } = location;
@@ -46,10 +50,5 @@ function HoldingPage({ location, pagename }) {
     </div>
   );
 }
-
-HoldingPage.propTypes = {
-  location: PropTypes.object.isRequired,
-  pagename: PropTypes.string,
-};
 
 export default HoldingPage;
