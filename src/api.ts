@@ -1,6 +1,6 @@
-const API_BASE_URL = 'https://api.spacexdata.com/v3/';
+const API_BASE_URL: string = 'https://api.spacexdata.com/v3/';
 
-export async function loadSection(section) {
+export async function loadSection(section: string) {
   const response = await fetch(`${API_BASE_URL}${section}`);
 
   return await response.json();

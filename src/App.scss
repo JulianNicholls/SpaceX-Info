@@ -85,6 +85,7 @@ aside {
     font-family: 'Arvo', Helvetica, Arial, sans-serif;
     font-size: 1.25rem;
     font-weight: bold;
+    letter-spacing: 1px;
     padding: 0.25rem 0.5rem;
 
     small {
@@ -132,10 +133,12 @@ aside {
 }
 
 section.raw-data {
-  border: 1px solid darken($off-white, 20);
+  border: 1px solid darken($off-white, 30);
+  background: 1px solid darken($off-white, 10);
   overflow-x: scroll;
   padding: 0.5rem;
   width: 80vw;
+  height: 60vh;
 
   h2 {
     font-size: 1.5rem;
