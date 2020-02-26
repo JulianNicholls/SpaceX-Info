@@ -2,11 +2,12 @@ import React from 'react';
 
 interface CardProps {
   header: string;
-  subheader: string;
-  headerClass: string;
-  footer: string;
-  children: JSX.Element;
+  subheader?: string;
+  headerClass?: string;
+  footer?: string;
+  children: JSX.Element | Array<JSX.Element | null>;
 }
+
 function Card({ header, subheader, headerClass, footer, children }: CardProps) {
   return (
     <div className="card">
