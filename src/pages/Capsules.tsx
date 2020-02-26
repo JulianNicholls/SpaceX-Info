@@ -5,7 +5,24 @@ import Card from '../components/Card';
 
 import { loadCapsules } from '../api';
 
-function renderMissions(missions) {
+interface Mission {
+  name: string;
+  flight: number;
+}
+
+interface Capsule {
+  capsule_serial: string;
+  capsule_id: string;
+  status: string;
+  original_launch: string;
+  missions: Array<Mission>;
+  landings: number;
+  type: string;
+  details: string;
+  reuse_count: number;
+}
+
+function renderMissions(missions: Array<Mission>) {
   const count = missions.length;
 
   if (count === 0) return null;
@@ -13,7 +30,7 @@ function renderMissions(missions) {
   let num = `${count} ${count === 1 ? 'mission' : 'missions'}`;
 
   const list = missions
-    .map(({ name, flight }) => `Flight ${flight} - ${name}`)
+    .map(({ name, flight }): string => `Flight ${flight} - ${name}`)
     .join(', ');
 
   return (
@@ -23,20 +40,20 @@ function renderMissions(missions) {
   );
 }
 
-const CapsulesPage = () => {
-  const [capsules, setCapsules] = useState(null);
+const CapsulesPage = (): JSX.Element => {
+  const [capsules, setCapsules] = useState<Array<Capsule>>([]);
 
   useEffect(() => {
+    const initialLoad = async () => {
+      const capsules = await loadCapsules();
+
+      setCapsules(capsules);
+    };
+
     initialLoad();
   }, []);
 
-  const initialLoad = async () => {
-    const capsules = await loadCapsules();
-
-    setCapsules(capsules);
-  };
-
-  const renderCapsules = () => {
+  const renderCapsules = (): Array<JSX.Element> => {
     return capsules.map(
       ({
         capsule_serial,
@@ -48,7 +65,7 @@ const CapsulesPage = () => {
         type,
         details,
         reuse_count,
-      }) => {
+      }): JSX.Element => {
         let headerClass = 'upcoming';
 
         if (status === 'active') headerClass = 'success';
@@ -61,12 +78,12 @@ const CapsulesPage = () => {
             subheader={`${capsule_id} ${status}`}
             headerClass={headerClass}
           >
-            {original_launch && (
+            {original_launch ? (
               <p>
                 Original Launch Date:{' '}
                 {moment(original_launch).format('Do MMM YYYY h:mma')}
               </p>
-            )}
+            ) : null}
             {renderMissions(missions)}
             <p>
               Landings: {landings}
@@ -83,7 +100,11 @@ const CapsulesPage = () => {
   return (
     <div className="missions">
       <h1 className="is-centred">Capsules</h1>
-      {capsules ? renderCapsules() : <h2 className="is-centred">Loading...</h2>}
+      {capsules.length !== 0 ? (
+        renderCapsules()
+      ) : (
+        <h2 className="is-centred">Loading...</h2>
+      )}
     </div>
   );
 };
