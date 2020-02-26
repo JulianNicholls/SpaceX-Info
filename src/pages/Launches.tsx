@@ -6,32 +6,50 @@ import Card from '../components/Card';
 import { loadLaunches } from '../api';
 import { formatSentences } from '../utils';
 
+interface Payload {
+  payload_type: string;
+  payload_id: string;
+}
+
+interface Launch {
+  flight_number: number;
+  mission_name: string;
+  launch_success: boolean;
+  launch_date_local: string;
+  rocket: { rocket_name: string; second_stage: { payloads: Array<Payload> } };
+  details: string;
+  launch_site: { site_name_long: string };
+  upcoming: boolean;
+}
+
 // I assumed that at least 1 early mission would have no payload, but no
-function renderPayloads(payloads) {
+function renderPayloads(payloads: Array<Payload>) {
   const count = payloads.length;
   let num = `${count} ${count === 1 ? 'payload' : 'payloads'}`;
 
   const list = payloads
-    .map(({ payload_type, payload_id }) => `${payload_type} ${payload_id}`)
+    .map(
+      ({ payload_type, payload_id }: Payload) => `${payload_type} ${payload_id}`
+    )
     .join(', ');
 
   return `${num}: ${list}`;
 }
 
-const LaunchesPage = () => {
-  const [launches, setLaunches] = useState(null);
-
-  const initialLoad = async () => {
-    const launches = await loadLaunches();
-
-    setLaunches(launches);
-  };
+const LaunchesPage = (): JSX.Element => {
+  const [launches, setLaunches] = useState<Array<Launch>>([]);
 
   useEffect(() => {
+    const initialLoad = async () => {
+      const launches = await loadLaunches();
+
+      setLaunches(launches);
+    };
+
     initialLoad();
   }, []);
 
-  const renderLaunches = () => {
+  const renderLaunches = (): Array<JSX.Element> => {
     return launches.map(
       ({
         launch_success,
@@ -45,7 +63,7 @@ const LaunchesPage = () => {
           second_stage: { payloads },
         },
         upcoming,
-      }) => {
+      }): JSX.Element => {
         const headerClass = upcoming
           ? 'upcoming'
           : launch_success
@@ -75,7 +93,11 @@ const LaunchesPage = () => {
     <div className="launches">
       <h1 className="is-centred">Launches</h1>
 
-      {launches ? renderLaunches() : <h2 className="is-centred">Loading...</h2>}
+      {launches.length ? (
+        renderLaunches()
+      ) : (
+        <h2 className="is-centred">Loading...</h2>
+      )}
     </div>
   );
 };

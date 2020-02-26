@@ -5,8 +5,18 @@ import Card from '../components/Card';
 import { loadMissions } from '../api';
 import { formatSentences } from '../utils';
 
+interface Mission {
+  mission_id: string;
+  mission_name: string;
+  manufacturers: Array<string>;
+  payload_ids: Array<string>;
+  wikipedia: string;
+  website: string;
+  description: string;
+}
+
 const MissionsPage = () => {
-  const [missions, setMissions] = useState(null);
+  const [missions, setMissions] = useState<Array<Mission>>([]);
 
   useEffect(() => {
     initialLoad();
@@ -38,17 +48,17 @@ const MissionsPage = () => {
             <p>Manufacturers: {manufacturers.join(', ')}</p>
             <p>Payloads: {payload_ids.join(', ')}</p>
             <p className="details">{formatSentences(description)}</p>
-            {wikipedia && (
+            {wikipedia ? (
               <a href={wikipedia} target="_blank" rel="noopener noreferrer">
                 More Information
               </a>
-            )}
+            ) : null}
             <br />
-            {website && (
+            {website ? (
               <a href={website} target="_blank" rel="noopener noreferrer">
                 {mission_name}
               </a>
-            )}
+            ) : null}
           </Card>
         );
       }
