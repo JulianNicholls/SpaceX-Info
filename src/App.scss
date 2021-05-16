@@ -1,14 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Arvo');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 $off-white: #eee;
 
 $aside: #243aa8;
-$card-header: #1b2b7e;
-$success_bg: #005700;
-$success: #99ff99;
-$failure_bg: #990000;
-$failure: #ffe0e0;
+$card-header: hsl(230, 65, 27);
+$success_bg: hsl(120, 100, 11);
+$success: hsl(150, 100, 46);
+$failure_bg: hsl(0, 100, 20);
+$failure: hsl(30, 100, 80);
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -20,14 +19,18 @@ a[href^="mailto:"]::after {
 
 body {
   background: $off-white;
-  font-family: 'Arvo', Georgia, Times, serif;
-  line-height: 1.3;
+  font-family: 'Nunito',
+  Helvetica,
+  Arial,
+  sans-serif;
+  line-height: 1.2;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'PT Sans', Helvetica, Arial, sans-serif;
+  font-family: 'Nunito', Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
+  font-weight: bold;
 }
 
 .is-centred {
@@ -56,20 +59,28 @@ header {
 aside {
   background: $aside;
   color: $off-white;
-  font-family: 'Arvo', Helvetica, Arial, sans-serif;
-  font-size: 0.9rem;
+  font-family: 'Nunito', Helvetica, Arial, sans-serif;
   padding-top: 1rem;
+
+  nav {
+    position: sticky;
+    top: 1rem;
+  }
 
   a {
     color: $off-white;
     display: block;
-    padding: 0.5rem;
+    padding: 0.4rem;
     text-decoration: none;
+
+    &:hover {
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, .7);
+    }
   }
 
   .active {
     color: white;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: bold;
   }
 }
@@ -82,10 +93,9 @@ aside {
   &__header {
     background: $card-header;
     color: $off-white;
-    font-family: 'Arvo', Helvetica, Arial, sans-serif;
+    font-family: 'Nunito', Helvetica, Arial, sans-serif;
     font-size: 1.25rem;
     font-weight: bold;
-    letter-spacing: 1px;
     padding: 0.25rem 0.5rem;
 
     small {
@@ -102,7 +112,7 @@ aside {
   padding: 1rem;
   display: grid;
   grid-gap: 0.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
 
   h1, h2 {
     grid-column: 1 / -1;

@@ -1,7 +1,15 @@
+// API v3 is apparently deprecated, but V4 is very different
 const API_BASE_URL: string = 'https://api.spacexdata.com/v3/';
+const APIV4_BASE_URL: string = 'https://api.spacexdata.com/v4/';
 
 export async function loadSection(section: string) {
   const response = await fetch(`${API_BASE_URL}${section}`);
+
+  return await response.json();
+}
+
+export async function loadSectionV4(section: string) {
+  const response = await fetch(`${APIV4_BASE_URL}${section}`);
 
   return await response.json();
 }

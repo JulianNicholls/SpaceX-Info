@@ -5,6 +5,7 @@ const texts: Array<string> = [
   'Packets are flowing through the internet to get to you. ',
   'Light speed ahead! or not...',
   'Good things come to those who wait.',
+  // eslint-disable-next-line quotes
   "If you're happy and you know it, clap your hands!",
   'Time for a sip of water.',
   'Forming the pixels on your screen.',
