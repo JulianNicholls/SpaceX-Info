@@ -3,22 +3,23 @@
   "version": "0.6.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "^25.1.3",
-    "@types/node": "^13.7.5",
-    "@types/react": "^16.9.23",
-    "@types/react-dom": "^16.9.5",
-    "@types/react-router": "^5.1.4",
-    "@types/react-router-dom": "^5.1.3",
     "json-format-highlight": "^1.0.4",
-    "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "moment": "^2.29.1",
+    "node-sass": "^6.0.0",
     "normalize.css": "^8.0.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.1",
-    "typescript": "^3.8.2"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.3.0",
+    "@types/react": "^17.0.5",
+    "@types/react-dom": "^17.0.5",
+    "@types/react-router": "^5.1.14",
+    "@types/react-router-dom": "^5.1.7"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -29,9 +30,18 @@
   "eslintConfig": {
     "extends": "react-app",
     "rules": {
-      "linebreak-style": ["error", "unix"],
-      "quotes": ["error", "single"],
-      "semi": ["error", "always"],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
       "jsx-a11y/href-no-hash": "off"
     }
   },
